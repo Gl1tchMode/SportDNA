@@ -1,60 +1,90 @@
-import Navbar from "../components/Navbar";
+"use client";
+
+import { useState } from "react";
+import DNAHelix from "../components/DNAHelix";
 
 export default function Home() {
+  const [dark, setDark] = useState(true);
+
   return (
-    <main className="min-h-screen bg-[#071A35] text-white flex items-center justify-center relative overflow-hidden">
-      <Navbar />
+    <main
+      className={`min-h-screen transition-all duration-500 ${
+        dark
+          ? "bg-[#06172B] text-white"
+          : "bg-[#F7FAFC] text-[#071A35]"
+      }`}
+    >
+      {/* Background glow */}
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
+      </div>
 
-      {/* Background Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl top-[-120px] left-[-120px]" />
-      <div className="absolute w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl bottom-[-100px] right-[-100px]" />
+      {/* Floating Glass Navbar */}
+      <header className="flex justify-center pt-6 px-4">
+        <nav
+          className={`w-full max-w-6xl rounded-2xl border backdrop-blur-xl px-6 py-4 flex items-center justify-between ${
+            dark
+              ? "bg-white/5 border-white/10"
+              : "bg-white/70 border-slate-200"
+          }`}
+        >
+          <h1 className="text-xl font-black tracking-wide">
+            SPORT<span className="text-cyan-400">DNA</span>
+          </h1>
 
-      {/* Hero Section */}
-      <div className="relative z-10 text-center px-6 max-w-4xl">
-        <p className="uppercase tracking-[0.4em] text-cyan-400 text-sm mb-5">
-          AI SPORTS ASSESSMENT PLATFORM
-        </p>
+          <div className="hidden md:flex gap-8 text-sm font-medium">
+            <a className="text-cyan-400" href="#">Home</a>
+            <a href="#">Schools</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+          </div>
 
-        <h1 className="text-6xl md:text-8xl font-black leading-none">
+          <button
+            onClick={() => setDark(!dark)}
+            className={`relative h-8 w-14 rounded-full transition ${
+              dark ? "bg-slate-700" : "bg-slate-300"
+            }`}
+          >
+            <div
+              className={`absolute top-1 h-6 w-6 rounded-full bg-cyan-400 transition-all ${
+                dark ? "left-7" : "left-1"
+              }`}
+            />
+          </button>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section className="min-h-[calc(100vh-96px)] flex flex-col items-center justify-center text-center px-6">
+        <DNAHelix />
+
+        <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-wide">
           SPORT<span className="text-cyan-400">DNA</span>
         </h1>
 
-        <p className="mt-6 text-xl text-slate-300">
-          The Right Sport for Every Child
+        <p className="mt-3 text-xs tracking-[0.35em] uppercase text-cyan-400">
+          THE RIGHT SPORT FOR EVERY CHILD
         </p>
 
-        <p className="mt-3 text-slate-400 max-w-2xl mx-auto leading-7">
-          Helping schools discover every child&apos;s natural sporting strengths
+        <p
+          className={`mt-6 max-w-2xl text-lg leading-8 ${
+            dark ? "text-slate-300" : "text-slate-600"
+          }`}
+        >
+          Helping schools discover every child's natural sporting strengths
           through AI-powered physical assessments.
         </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-cyan-400 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-cyan-300 transition">
-            Enter Teacher Portal
-          </button>
+        <button className="mt-8 rounded-xl bg-cyan-400 px-8 py-4 font-bold text-slate-900 shadow-[0_0_30px_rgba(34,211,238,0.35)] transition hover:scale-105">
+          Get Started
+        </button>
 
-          <button className="border border-slate-600 px-8 py-4 rounded-xl font-semibold hover:border-cyan-400 hover:text-cyan-400 transition">
-            Learn More
-          </button>
-        </div>
-
-        <div className="mt-16 grid grid-cols-3 gap-6 text-center">
-          <div>
-            <h3 className="text-3xl font-bold text-cyan-400">35</h3>
-            <p className="text-slate-400 text-sm mt-1">Sports</p>
-          </div>
-
-          <div>
-            <h3 className="text-3xl font-bold text-cyan-400">8</h3>
-            <p className="text-slate-400 text-sm mt-1">Physical Tests</p>
-          </div>
-
-          <div>
-            <h3 className="text-3xl font-bold text-cyan-400">AI</h3>
-            <p className="text-slate-400 text-sm mt-1">Powered Analysis</p>
+        <div className="mt-14 opacity-70">
+          <div className="mx-auto h-10 w-6 rounded-full border border-cyan-400 flex justify-center">
+            <div className="mt-2 h-2 w-1 rounded-full bg-cyan-400 animate-bounce" />
           </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
