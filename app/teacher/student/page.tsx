@@ -1,10 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-
-export default function StudentPage() {
+function StudentProfile() {
   const searchParams = useSearchParams();
 
   const name = searchParams.get("name") || "Student";
@@ -14,7 +13,7 @@ export default function StudentPage() {
     <main className="min-h-screen bg-[#06172B] text-white p-8">
       <div className="max-w-5xl mx-auto">
         <button
-          onClick={() => history.back()}
+          onClick={() => window.history.back()}
           className="text-cyan-400 mb-6"
         >
           ← Back
@@ -60,6 +59,20 @@ export default function StudentPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function StudentPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-[#06172B] text-white flex items-center justify-center">
+          Loading...
+        </main>
+      }
+    >
+      <StudentProfile />
+    </Suspense>
   );
 }
 
