@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DNAHelix from "../components/DNAHelix";
+import HowItWorks from "../components/HowItWorks";
 
 export default function Home() {
   const [dark, setDark] = useState(true);
@@ -14,12 +15,12 @@ export default function Home() {
           : "bg-[#F7FAFC] text-[#071A35]"
       }`}
     >
-      {/* Background glow */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
+      {/* Background Glow */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full bg-cyan-400/10 blur-3xl animate-pulse" />
       </div>
 
-      {/* Floating Glass Navbar */}
+      {/* Glass Navbar */}
       <header className="flex justify-center pt-6 px-4">
         <nav
           className={`w-full max-w-6xl rounded-2xl border backdrop-blur-xl px-6 py-4 flex items-center justify-between ${
@@ -33,7 +34,9 @@ export default function Home() {
           </h1>
 
           <div className="hidden md:flex gap-8 text-sm font-medium">
-            <a className="text-cyan-400" href="#">Home</a>
+            <a className="text-cyan-400" href="#">
+              Home
+            </a>
             <a href="#">Schools</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
@@ -56,7 +59,9 @@ export default function Home() {
 
       {/* Hero */}
       <section className="min-h-[calc(100vh-96px)] flex flex-col items-center justify-center text-center px-6">
-        <DNAHelix />
+        <div className="animate-[float_6s_ease-in-out_infinite]">
+          <DNAHelix />
+        </div>
 
         <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-wide">
           SPORT<span className="text-cyan-400">DNA</span>
@@ -75,16 +80,30 @@ export default function Home() {
           through AI-powered physical assessments.
         </p>
 
-        <button className="mt-8 rounded-xl bg-cyan-400 px-8 py-4 font-bold text-slate-900 shadow-[0_0_30px_rgba(34,211,238,0.35)] transition hover:scale-105">
+        <button className="mt-8 rounded-xl bg-cyan-400 px-8 py-4 font-bold text-slate-900 shadow-[0_0_35px_rgba(34,211,238,0.45)] hover:scale-105 transition-all duration-300">
           Get Started
         </button>
 
-        <div className="mt-14 opacity-70">
-          <div className="mx-auto h-10 w-6 rounded-full border border-cyan-400 flex justify-center">
+        <div className="mt-16 opacity-70">
+          <div className="h-10 w-6 rounded-full border border-cyan-400 flex justify-center mx-auto">
             <div className="mt-2 h-2 w-1 rounded-full bg-cyan-400 animate-bounce" />
           </div>
         </div>
       </section>
+
+      <HowItWorks />
+
+      <style jsx global>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+      `}</style>
     </main>
   );
 }
