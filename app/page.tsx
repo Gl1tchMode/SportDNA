@@ -1,5 +1,7 @@
+
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import DNAHelix from "../components/DNAHelix";
 import HowItWorks from "../components/HowItWorks";
@@ -15,12 +17,10 @@ export default function Home() {
           : "bg-[#F7FAFC] text-[#071A35]"
       }`}
     >
-      {/* Background Glow */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute top-24 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full bg-cyan-400/10 blur-3xl animate-pulse" />
       </div>
 
-      {/* Glass Navbar */}
       <header className="flex justify-center pt-6 px-4">
         <nav
           className={`w-full max-w-6xl rounded-2xl border backdrop-blur-xl px-6 py-4 flex items-center justify-between ${
@@ -29,7 +29,7 @@ export default function Home() {
               : "bg-white/70 border-slate-200"
           }`}
         >
-          <h1 className="text-xl font-black tracking-wide">
+          <h1 className="text-xl font-black">
             SPORT<span className="text-cyan-400">DNA</span>
           </h1>
 
@@ -57,13 +57,12 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
       <section className="min-h-[calc(100vh-96px)] flex flex-col items-center justify-center text-center px-6">
         <div className="animate-[float_6s_ease-in-out_infinite]">
           <DNAHelix />
         </div>
 
-        <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-wide">
+        <h1 className="mt-6 text-5xl md:text-7xl font-black">
           SPORT<span className="text-cyan-400">DNA</span>
         </h1>
 
@@ -80,9 +79,12 @@ export default function Home() {
           through AI-powered physical assessments.
         </p>
 
-        <button className="mt-8 rounded-xl bg-cyan-400 px-8 py-4 font-bold text-slate-900 shadow-[0_0_35px_rgba(34,211,238,0.45)] hover:scale-105 transition-all duration-300">
-          Get Started
-        </button>
+        <Link
+          href="/teacher"
+          className="mt-8 rounded-xl bg-cyan-400 px-8 py-4 font-bold text-slate-900 shadow-[0_0_35px_rgba(34,211,238,0.45)] hover:scale-105 transition-all duration-300"
+        >
+          Enter Teacher Portal
+        </Link>
 
         <div className="mt-16 opacity-70">
           <div className="h-10 w-6 rounded-full border border-cyan-400 flex justify-center mx-auto">
